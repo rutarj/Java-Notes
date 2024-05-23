@@ -1,0 +1,203 @@
+### Application Program Development: Major Differences of Java and C++
+
+**Instructor:** Mahboob Ali
+
+#### Outcomes
+- Understand the major differences between C++ and Java
+
+### Major Differences between C++ and Java
+
+**Class Definitions:**
+Java and C++ handle class definitions differently. In C++, class definitions often include a separate constructor definition and require a semicolon at the end of the class declaration. Java does not use a semicolon at the end of the class definition.
+
+**Example: Class Definition in C++ and Java**
+```cpp
+// C++ code
+class CRectangle {
+    int width, height;
+public:
+    CRectangle(int a, int b) {
+        width = a;
+        height = b;
+    }
+    int area() {
+        return (width * height);
+    }
+}; // Semicolon required here
+```
+
+```java
+// Java code
+public class CRectangle {
+    private int width, height;
+    public CRectangle(int a, int b) {
+        width = a;
+        height = b;
+    }
+    public int area() {
+        return (width * height);
+    }
+} // No semicolon needed here
+```
+
+**Destructors:**
+Java does not have destructors as C++ does. Instead, Java relies on garbage collection to manage memory.
+
+**Example: Destructor in C++**
+```cpp
+// C++ code
+class CRectangle {
+    int width, height;
+public:
+    CRectangle(int a, int b) {
+        width = a;
+        height = b;
+    }
+    ~CRectangle() {
+        // Destructor code
+    }
+    int area() {
+        return (width * height);
+    }
+};
+```
+
+**Main Method:**
+In Java, the `main` method must be inside a class and is always `public static void main(String[] args)`. In C++, `main` is a global function.
+
+**Example: Main Method in C++ and Java**
+```cpp
+// C++ code
+int main() {
+    CRectangle rectA(3, 4);
+    CRectangle rectB(5, 6);
+    std::cout << "rectA area: " << rectA.area() << std::endl;
+    std::cout << "rectB area: " << rectB.area() << std::endl;
+    return 0;
+}
+```
+
+```java
+// Java code
+public class Main {
+    public static void main(String[] args) {
+        CRectangle rectA = new CRectangle(3, 4);
+        CRectangle rectB = new CRectangle(5, 6);
+        System.out.println("rectA area: " + rectA.area());
+        System.out.println("rectB area: " + rectB.area());
+    }
+}
+```
+
+**Inheritance and Polymorphism:**
+In C++, polymorphism is achieved using virtual functions. In Java, all non-static methods are virtual by default.
+
+**Example: Inheritance and Polymorphism in C++ and Java**
+```cpp
+// C++ code
+class Polygon {
+protected:
+    int width, height;
+public:
+    Polygon(int a, int b) : width(a), height(b) {}
+    virtual int area() {
+        return 0;
+    }
+};
+
+class Rectangle : public Polygon {
+public:
+    Rectangle(int a, int b) : Polygon(a, b) {}
+    int area() override {
+        return (width * height);
+    }
+};
+
+class Triangle : public Polygon {
+public:
+    Triangle(int a, int b) : Polygon(a, b) {}
+    int area() override {
+        return (width * height / 2);
+    }
+};
+
+int main() {
+    Polygon* p1 = new Rectangle(4, 5);
+    Polygon* p2 = new Triangle(4, 5);
+    std::cout << p1->area() << std::endl;
+    std::cout << p2->area() << std::endl;
+    delete p1;
+    delete p2;
+    return 0;
+}
+```
+
+```java
+// Java code
+public class Polygon {
+    protected int width, height;
+    public Polygon(int a, int b) {
+        width = a;
+        height = b;
+    }
+    public int area() {
+        return 0;
+    }
+}
+
+public class Rectangle extends Polygon {
+    public Rectangle(int a, int b) {
+        super(a, b);
+    }
+    public int area() {
+        return (width * height);
+    }
+}
+
+public class Triangle extends Polygon {
+    public Triangle(int a, int b) {
+        super(a, b);
+    }
+    public int area() {
+        return (width * height / 2);
+    }
+}
+
+public class PolyTest {
+    public static void main(String[] args) {
+        Polygon p1 = new Rectangle(4, 5);
+        Polygon p2 = new Triangle(4, 5);
+        System.out.println(p1.area());
+        System.out.println(p2.area());
+    }
+}
+```
+
+**Memory Management:**
+Java uses garbage collection for memory management, whereas C++ uses destructors and manual memory management.
+
+**Example: Garbage Collection in Java**
+```java
+public class Example {
+    public static void main(String[] args) {
+        Example example = new Example();
+        example = null; // Eligible for garbage collection
+        System.gc(); // Suggest garbage collection
+    }
+
+    @Override
+    protected void finalize() {
+        System.out.println("Garbage collector called");
+    }
+}
+```
+
+### Question Time
+
+How does Java handle memory management?
+- Destructor
+- Delete Keyword
+- Remove Keyword
+- Garbage Collected
+
+
